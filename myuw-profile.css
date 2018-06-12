@@ -1,0 +1,104 @@
+#myuw-profile-login {
+    font-family: 'Roboto', 'Noto', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    padding: 10px 13px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+}
+
+#myuw-profile-login.hidden {
+    display: none;
+}
+
+#myuw-profile-circle {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: teal;
+    border-radius: 100%;
+}
+
+#myuw-profile-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#myuw-profile-wrapper.hidden {
+    display: none;
+}
+
+#myuw-profile-nav {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color:white;
+    min-width: 320px;
+    color: black;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+
+    transform-origin: top right;
+    transform: scale(0);
+    opacity: 0;
+    transition: all .25s ease;
+
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+}
+
+#myuw-profile-nav.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#myuw-profile-nav p {
+    padding: 0;
+    margin: 0;
+}
+
+#myuw-profile-nav.visible a,
+#myuw-profile-nav.visible p {
+    opacity: 1;
+}
+
+#myuw-profile-nav a,
+#myuw-profile-nav p {
+    opacity: 0;
+    transition: all .3s ease;
+    position: relative;
+    display: block;
+    padding: 14px 16px;
+    /* transition: background-color .15s ease; */
+    color: black;
+    text-decoration: none;
+}
+
+#myuw-profile-nav a:first-child,
+#myuw-profile-nav p:first-child {
+    padding: 14px 16px;
+    font-weight: bold;
+}
+
+#myuw-profile-wrapper a:hover,
+#myuw-profile-wrapper p:hover {
+    background-color: rgba(158,158,158,0.2);
+}
+
+:global(#myuw-profile-nav li a) {
+    transition: all .3s ease;
+    position: relative;
+    display: block;
+    padding: 14px 16px;
+    background-color: teal;
+    /* transition: background-color .15s ease; */
+    color: black;
+    text-decoration: none;
+}

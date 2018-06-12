@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            nav {
+                text-align: right;
+                background: #c5050c;
+                height: 50px;
+                width: calc(100% - 10px);
+                max-width: 100%;
+                padding-top: 10px;
+                padding-right: 10px;
+            }
+        </style>
+        <script src="https://unpkg.com/@myuw-web-components/myuw-app-bar@0.1.1"></script>
+        <link rel="import" href="myuw-profile.html">
+    </head>
+    <body>
+
+        <myuw-app-bar appName="Bucky Backup">
+            <myuw-profile 
+                slot="myuw-profile"
+                login-url="https://wisc.edu/"
+                logout-url="https://wisc.edu/"
+                session-endpoint="https://my.wisc.edu/portal/web/session.json"
+            >
+            </myuw-profile>
+        </myuw-app-bar>
+    </body>
+</html>

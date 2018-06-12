@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<template id="myuw-profile-template">
+    <link href="./myuw-profile.css" rel="stylesheet">
+    
+    <a href="#" id="myuw-profile-login">Login</a>
+
+    <div id="myuw-profile-wrapper">
+            <div id="myuw-profile-circle"></div>
+
+            <div id="myuw-profile-nav">
+                <p>Bucky</p>
+                <slot name="list-item"></slot>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+    </div>
+
+</template>
+<script>
+const testMyUW = {"person":{"firstName":"Bucky","lastName":"Badger","sessionKey":"111111111","displayName":"Bucky Badger","serverName":"prod","userName":"bbadger"}};
+
+class MyUWProfile extends HTMLElement {
+    constructor() {
+        super();
+        
+        // Get the script document
+        const thisDoc = (document._currentScript || document.currentScript).ownerDocument;
+
+        // Create a shadowroot for this element
+        this.attachShadow({mode: 'open'});
+
+        // Get the template and extract the HTML content
+        const template = thisDoc.getElementById('myuw-profile-template');
+
+        // Append the custom HTML to the shadowroot
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    static get observedAttributes() {return ['login-url', 'logout-url', 'session-endpoint']; }
+
+    attributeChangedCallback(name, oldValue, newValue){
+        // Update the attribute internally
+        // console.log(`${name} has updated from "${oldValue}" to "${newValue}"`);
+        this[name] = newValue;
+
+        // Update the component
+        this.updateComponent();
+    }
+
+    connectedCallback(){
+        // Get all attributes
+        this['login-url']           = this.getAttribute('login-url');
+        this['logout-url']          = this.getAttribute('logout-url');
+        this['session-endpoint']    = this.getAttribute('session-endpoint');
+
+        // Get the user info
+        if(this['session-endpoint']){
+            
+            this['user'] = testMyUW.person;
+            // this['user'] = false
+            
+        } else {
+            throw 'No session endpoint has been defiend. Please pass the session endpoint URL into the myuw-profile element!';
+            this['user'] = false;
+        }
+
+        // Attach onClick to profile button
+        this.shadowRoot.getElementById('myuw-profile-circle').addEventListener('click', e => {
+            e.stopPropagation();
+            this.shadowRoot.getElementById('myuw-profile-nav').classList.toggle('visible');
+        });
+
+        this.shadowRoot.getElementById('myuw-profile-nav').addEventListener('click', e => {
+            e.stopPropagation();
+        });
+
+        
+
+        // Add onclick to body
+        window.addEventListener('click', e => {
+            let nav = this.shadowRoot.getElementById('myuw-profile-nav');
+            if(nav.classList.contains('visible')){
+                nav.classList.remove('visible')
+            }
+        });
+
+        // Update the component to use the new attributes
+        this.updateComponent();
+    }
+
+    updateComponent(){
+        // Set the Login URL
+        this.shadowRoot.getElementById('myuw-profile-login').setAttribute('href', this['login-url']);
+
+        // Show / hide elements based on shib state
+        if(this.user){
+            this.shadowRoot.getElementById('myuw-profile-login').classList.add('hidden');
+
+            this.shadowRoot.getElementById('myuw-profile-wrapper').classList.remove('hidden');
+        } else {
+            this.shadowRoot.getElementById('myuw-profile-login').classList.remove('hidden');
+
+            this.shadowRoot.getElementById('myuw-profile-wrapper').classList.add('hidden');
+        }
+    }
+}
+window.customElements.define('myuw-profile', MyUWProfile);
+</script>
