@@ -12,6 +12,7 @@ You can view a test of this component being used with the myuw-app-bar by openin
 - **Login URL (login-url):** The URL to redirect users to on login
 - **Logout URL (logout-url):** The Logout URL to redirect users to on logout
 - **Session Endpoint (session-endpoint):** The endpoint URL for session info
+- **Open Menu Right (open-right):** Include this attribute if you would like the profile menu to open to the right, instead of left
 
 #### Slots
 
