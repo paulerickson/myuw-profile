@@ -5,13 +5,15 @@
     <a href="#" id="myuw-profile-login">Login</a>
 
     <div id="myuw-profile-wrapper">
-            <div id="myuw-profile-circle"></div>
+            <div id="myuw-profile-circle">
+                <p id="myuw-profile-circle-initial">B</p>
+            </div>
 
             <div id="myuw-profile-nav">
-                <p>Bucky</p>
-                <slot name="list-item"></slot>
+                <p id="myuw-profile-nav-user">Bucky</p>
+                <slot name="nav-item"></slot>
                 <a href="#">Settings</a>
-                <a href="#">Logout</a>
+                <a id="myuw-profile-logout" href="#">Logout</a>
             </div>
     </div>
 
@@ -92,14 +94,25 @@ class MyUWProfile extends HTMLElement {
         // Set the Login URL
         this.shadowRoot.getElementById('myuw-profile-login').setAttribute('href', this['login-url']);
 
+        // Set the logout URL
+        this.shadowRoot.getElementById('myuw-profile-logout').setAttribute('href', this['logout-url']);
+
         // Show / hide elements based on shib state
         if(this.user){
+            // Hide login button
             this.shadowRoot.getElementById('myuw-profile-login').classList.add('hidden');
-
+            // Show Profile circle
             this.shadowRoot.getElementById('myuw-profile-wrapper').classList.remove('hidden');
-        } else {
-            this.shadowRoot.getElementById('myuw-profile-login').classList.remove('hidden');
 
+            // Add user's name to first menu item
+            this.shadowRoot.getElementById('myuw-profile-nav-user').innerHTML = this.user.firstName;
+
+            // Change the letter in the profile circle
+            this.shadowRoot.getElementById('myuw-profile-circle-initial').innerHTML = this.user.firstName.substring(0,1);
+        } else {
+            // Show Login Button
+            this.shadowRoot.getElementById('myuw-profile-login').classList.remove('hidden');
+            // Hide profile Circle
             this.shadowRoot.getElementById('myuw-profile-wrapper').classList.add('hidden');
         }
     }
