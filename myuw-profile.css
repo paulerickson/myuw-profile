@@ -21,6 +21,18 @@
     height: 40px;
     background: teal;
     border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#myuw-profile-circle-initial {
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+    user-select: none;
+    text-transform: capitalize;
 }
 
 #myuw-profile-wrapper {
@@ -47,7 +59,7 @@
     transform-origin: top right;
     transform: scale(0);
     opacity: 0;
-    transition: all .25s ease;
+    transition: all .25s cubic-bezier(0.0, 0.0, 0.2, 1);
 
     -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 0.75);
@@ -64,41 +76,36 @@
     margin: 0;
 }
 
-#myuw-profile-nav.visible a,
-#myuw-profile-nav.visible p {
-    opacity: 1;
-}
-
 #myuw-profile-nav a,
-#myuw-profile-nav p {
-    opacity: 0;
+#myuw-profile-nav p,
+::slotted(a),
+::slotted(p){
     transition: all .3s ease;
     position: relative;
     display: block;
     padding: 14px 16px;
-    /* transition: background-color .15s ease; */
     color: black;
     text-decoration: none;
+    background-color: #f9f9f9;
+    border-bottom: solid 1px #e5e5e5;
+    user-select: none;
 }
 
 #myuw-profile-nav a:first-child,
 #myuw-profile-nav p:first-child {
     padding: 14px 16px;
     font-weight: bold;
+    background-color: white;
+}
+
+#myuw-profile-nav a:first-child:hover,
+#myuw-profile-nav p:first-child:hover {
+    background-color: white;
 }
 
 #myuw-profile-wrapper a:hover,
-#myuw-profile-wrapper p:hover {
+#myuw-profile-wrapper p:hover,
+::slotted(a:hover),
+::slotted(p:hover)  {
     background-color: rgba(158,158,158,0.2);
-}
-
-:global(#myuw-profile-nav li a) {
-    transition: all .3s ease;
-    position: relative;
-    display: block;
-    padding: 14px 16px;
-    background-color: teal;
-    /* transition: background-color .15s ease; */
-    color: black;
-    text-decoration: none;
 }
