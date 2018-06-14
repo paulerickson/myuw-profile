@@ -142,13 +142,12 @@
 
 </template>
 <script>
-
-// Get the script document
-const thisDoc = (document._currentScript || document.currentScript).ownerDocument;
-
 class MyUWProfile extends HTMLElement {
     constructor() {
         super();
+
+        // Get the script document
+        MyUWProfile.document = (document._currentScript || document.currentScript).ownerDocument;
 
         this['open-right'] = false;
 
@@ -156,7 +155,7 @@ class MyUWProfile extends HTMLElement {
         this.attachShadow({mode: 'open'});
 
         // Get the template and extract the HTML content
-        const template = thisDoc.getElementById('myuw-profile-template');
+        const template = MyUWProfile.document.getElementById('myuw-profile-template');
 
         // Append the custom HTML to the shadowroot
         this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -203,7 +202,11 @@ class MyUWProfile extends HTMLElement {
                     this.componentReady();
                 }
             })
-            .catch( e => console.log(e) );
+            .catch( e => {
+                console.log(e);
+                // Show login button if we couldn't get session info
+                this.componentReady();
+            } );
             
         } else {
             throw Error('No session endpoint has been defiend. Please set the "session-endpoint" attribute URL into the myuw-profile element!');
