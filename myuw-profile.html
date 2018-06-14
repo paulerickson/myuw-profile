@@ -1,128 +1,132 @@
 <!DOCTYPE html>
 <template id="myuw-profile-template">
     <style>
+        :host([hidden]) {
+            display: none;
+        }
+
         #myuw-profile-login {
-        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-        text-transform: uppercase;
-        text-decoration: none;
-        color: white;
-        padding: 10px 13px;
-        font-weight: bold;
-        letter-spacing: 0px;
-        font-size: 14px;
-        position: relative;
-        display: inline-block;
-    }
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            padding: 10px 13px;
+            font-weight: bold;
+            letter-spacing: 0px;
+            font-size: 14px;
+            position: relative;
+            display: inline-block;
+        }
 
-    #myuw-profile-login.hidden {
-        display: none;
-    }
+        #myuw-profile-login.hidden {
+            display: none;
+        }
 
-    #myuw-profile-circle {
-        position: relative;
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
+        #myuw-profile-circle {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
 
-    #myuw-profile-circle-initial {
-        padding: 0;
-        margin: 0;
-        font-weight: 500;
-        font-size: 18px;
-        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-        user-select: none;
-        color: white;
-        text-transform: capitalize;
-    }
+        #myuw-profile-circle-initial {
+            padding: 0;
+            margin: 0;
+            font-weight: 500;
+            font-size: 18px;
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            user-select: none;
+            color: white;
+            text-transform: capitalize;
+        }
 
-    #myuw-profile-wrapper {
-        position: relative;
-        display: inline-block;
-    }
+        #myuw-profile-wrapper {
+            position: relative;
+            display: inline-block;
+        }
 
-    #myuw-profile-wrapper.hidden {
-        display: none;
-    }
+        #myuw-profile-wrapper.hidden {
+            display: none;
+        }
 
-    #myuw-profile-nav {
-        position: absolute;
-        top: 45px;
-        right: 0;
-        background-color:white;
-        min-width: 320px;
-        color: black;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        font-size: 14px;
+        #myuw-profile-nav {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color:white;
+            min-width: 320px;
+            color: black;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
 
-        transform-origin: top right;
-        transform: scale(0);
-        opacity: 0;
-        transition: opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1), transform .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+            transform-origin: top right;
+            transform: scale(0);
+            opacity: 0;
+            transition: opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1), transform .25s cubic-bezier(0.0, 0.0, 0.2, 1);
 
-        -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
-        -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 0.75);
-        box-shadow:         0px 0px 7px 0px rgba(50, 50, 50, 0.75);
-    }
+            -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+        }
 
-    #myuw-profile-nav.open-right {
-        left: 0;
-        right: inherit;
-        transform-origin: top left;
-    }
+        #myuw-profile-nav.open-right {
+            left: 0;
+            right: inherit;
+            transform-origin: top left;
+        }
 
-    #myuw-profile-nav.visible {
-        transform: scale(1);
-        opacity: 1;
-    }
+        #myuw-profile-nav.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
 
-    #myuw-profile-nav p {
-        padding: 0;
-        margin: 0;
-    }
+        #myuw-profile-nav p {
+            padding: 0;
+            margin: 0;
+        }
 
-    #myuw-profile-nav a,
-    #myuw-profile-nav p,
-    ::slotted(a),
-    ::slotted(p){
-        transition: all .3s ease;
-        position: relative;
-        font-size: 15px;
-        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-        display: block;
-        padding: 14px 16px;
-        color: black;
-        text-decoration: none;
-        background-color: #f9f9f9;
-        border-bottom: solid 1px #e5e5e5;
-        user-select: none;
-    }
+        #myuw-profile-nav a,
+        #myuw-profile-nav p,
+        ::slotted(a),
+        ::slotted(p){
+            transition: all .3s ease;
+            position: relative;
+            font-size: 15px;
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            display: block;
+            padding: 14px 16px;
+            color: black;
+            text-decoration: none;
+            background-color: #f9f9f9;
+            border-bottom: solid 1px #e5e5e5;
+            user-select: none;
+        }
 
-    #myuw-profile-nav a:first-child,
-    #myuw-profile-nav p:first-child {
-        padding: 14px 16px;
-        font-weight: bold;
-        background-color: white;
-    }
+        #myuw-profile-nav a:first-child,
+        #myuw-profile-nav p:first-child {
+            padding: 14px 16px;
+            font-weight: bold;
+            background-color: white;
+        }
 
-    #myuw-profile-nav a:first-child:hover,
-    #myuw-profile-nav p:first-child:hover {
-        background-color: white;
-    }
+        #myuw-profile-nav a:first-child:hover,
+        #myuw-profile-nav p:first-child:hover {
+            background-color: white;
+        }
 
-    #myuw-profile-nav a:hover,
-    #myuw-profile-nav p:hover,
-    ::slotted(a:hover),
-    ::slotted(p:hover)  {
-        background-color: rgba(158,158,158,0.2);
-    }    
+        #myuw-profile-nav a:hover,
+        #myuw-profile-nav p:hover,
+        ::slotted(a:hover),
+        ::slotted(p:hover)  {
+            background-color: rgba(158,158,158,0.2);
+        }    
     </style>
     
     <a href="#" id="myuw-profile-login" class="hidden">Login</a>
@@ -285,7 +289,7 @@ class MyUWProfile extends HTMLElement {
 
         If not, the login button will show.
     */
-    componentReady(){
+    componentReady() {
         if(this.user){
             // Add user's name to first menu item
             this.shadowRoot.getElementById('myuw-profile-nav-user').innerHTML = this.user.firstName;
@@ -296,7 +300,11 @@ class MyUWProfile extends HTMLElement {
 
             this.showProfileBubble();
         } else {
-            this.showLoginButton();
+            if (this['login-url'] !== null) {
+                this.showLoginButton();
+            } else {
+                this.hidden = true;
+            }
         }
     }
 
@@ -305,7 +313,7 @@ class MyUWProfile extends HTMLElement {
         color based on the length of the users first name
         and the first letter of their first name
     */
-    setProfileColor(){
+    setProfileColor() {
         const colors = [
             '#093145',
             '#107896',
@@ -323,14 +331,14 @@ class MyUWProfile extends HTMLElement {
 
     }
 
-    showLoginButton(){
+    showLoginButton() {
         // Show Login Button
         this.shadowRoot.getElementById('myuw-profile-login').classList.remove('hidden');
         // Hide profile Circle
         this.shadowRoot.getElementById('myuw-profile-wrapper').classList.add('hidden');
     }
 
-    showProfileBubble(){
+    showProfileBubble() {
         // Hide login button
         this.shadowRoot.getElementById('myuw-profile-login').classList.add('hidden');
         // Show Profile circle
