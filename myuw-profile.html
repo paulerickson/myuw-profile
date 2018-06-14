@@ -203,7 +203,11 @@ class MyUWProfile extends HTMLElement {
                     this.componentReady();
                 }
             })
-            .catch( e => console.log(e) );
+            .catch( e => {
+                console.log(e);
+                // Show login button if we couldn't get session info
+                this.componentReady();
+            } );
             
         } else {
             throw Error('No session endpoint has been defiend. Please set the "session-endpoint" attribute URL into the myuw-profile element!');

@@ -2,10 +2,25 @@ This component is currently a work in progress, right now it does work as a stan
 
 Right now all of the data is hardcoded in as a placeholder, this will be updated soon to use dynamic data pulled in from the MyUW session endpoint.
 
-## Testing
+## Getting Started
 
-You can view a test of this component being used with the myuw-app-bar by opening index.html
+Add the following import to your page's `<head>`:
 
+```html
+<link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-profile@1.0.0/myuw-profile.html">
+```
+
+Use the component's HTML tag wherever you want:
+
+```HTML
+<myuw-profile
+    login-url=""
+    logout-url=""
+    session-endpoint=""
+    open-right=""
+>
+</myuw-profile>
+```
 
 #### Configurable properties
 
