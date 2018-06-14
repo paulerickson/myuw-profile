@@ -6,20 +6,28 @@
                 margin: 0;
             }
         </style>
+        <link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-app-bar@1.0.0/myuw-app-bar.html">
         <link rel="import" href="myuw-profile.html">
-        <link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-app-bar@1.0.1/myuw-app-bar.html">
+
     </head>
     <body>
 
-        <myuw-app-bar theme-name="MyUW" app-name="Profile" background="#c5050c" color="#fff">
+        <myuw-app-bar
+            theme-name="MyUW"
+            theme-url=""
+            app-name="Component Test"
+            app-url=""
+            background="rgb(197, 5, 12)"
+            color="white"
+        >
             <myuw-profile 
                 slot="myuw-profile"
                 login-url="https://wisc.edu/"
                 logout-url="https://wisc.edu/"
-                session-endpoint="https://my.wisc.edu/portal/web/session.json"
+                session-endpoint="http://localhost:3474/session.json"
             >
-            <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
-            <a href="https://wisc.edu" slot="nav-item">STAR</a>
+                <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
+                <a href="https://wisc.edu" slot="nav-item">STAR</a>
             </myuw-profile>
         </myuw-app-bar>
     </body>
