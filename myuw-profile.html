@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <template id="myuw-profile-template">
     <style>
-        #myuw-profile-login {
-        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    #myuw-profile-login {
+        font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
         text-transform: uppercase;
         text-decoration: none;
-        color: white;
+        color: var( --myuw-profile-login-color, var(--myuw-primary-color, white) );
         padding: 10px 13px;
         font-weight: bold;
         letter-spacing: 0px;
@@ -35,7 +35,7 @@
         margin: 0;
         font-weight: 500;
         font-size: 18px;
-        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+        font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
         user-select: none;
         color: white;
         text-transform: capitalize;
@@ -54,7 +54,6 @@
         position: absolute;
         top: 45px;
         right: 0;
-        background-color:white;
         min-width: 320px;
         color: black;
         list-style: none;
@@ -95,7 +94,7 @@
         transition: all .3s ease;
         position: relative;
         font-size: 15px;
-        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+        font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
         display: block;
         padding: 14px 16px;
         color: black;

@@ -17,7 +17,7 @@ Use the component's HTML tag wherever you want:
     login-url=""
     logout-url=""
     session-endpoint=""
-    open-right=""
+    open-right
 >
 </myuw-profile>
 ```
@@ -32,3 +32,10 @@ Use the component's HTML tag wherever you want:
 #### Slots
 
 - **Profile Navigation Item (nav-item):** Add a custom item to the profile button's navigation menu, this slot expects an `<a>` tag
+
+#### CSS Variables
+
+- `--myuw-profile-font`: Set the font stack for this component
+- `--myuw-profile-login-color`: Se the font color for the "Login" button
+
+For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
