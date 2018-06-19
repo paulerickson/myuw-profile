@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <template id="myuw-profile-template">
     <style>
+    :host([hidden]) {
+        display: none;
+    }
+
     #myuw-profile-login {
         font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
         text-transform: uppercase;
@@ -284,7 +288,7 @@ class MyUWProfile extends HTMLElement {
 
         If not, the login button will show.
     */
-    componentReady(){
+    componentReady() {
         if(this.user){
             // Add user's name to first menu item
             this.shadowRoot.getElementById('myuw-profile-nav-user').innerHTML = this.user.firstName;
@@ -295,7 +299,11 @@ class MyUWProfile extends HTMLElement {
 
             this.showProfileBubble();
         } else {
-            this.showLoginButton();
+            if (this['login-url'] !== null) {
+                this.showLoginButton();
+            } else {
+                this.hidden = true;
+            }
         }
     }
 
@@ -304,7 +312,7 @@ class MyUWProfile extends HTMLElement {
         color based on the length of the users first name
         and the first letter of their first name
     */
-    setProfileColor(){
+    setProfileColor() {
         const colors = [
             '#093145',
             '#107896',
@@ -322,14 +330,14 @@ class MyUWProfile extends HTMLElement {
 
     }
 
-    showLoginButton(){
+    showLoginButton() {
         // Show Login Button
         this.shadowRoot.getElementById('myuw-profile-login').classList.remove('hidden');
         // Hide profile Circle
         this.shadowRoot.getElementById('myuw-profile-wrapper').classList.add('hidden');
     }
 
-    showProfileBubble(){
+    showProfileBubble() {
         // Hide login button
         this.shadowRoot.getElementById('myuw-profile-login').classList.add('hidden');
         // Show Profile circle
