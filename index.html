@@ -66,8 +66,7 @@
                 slot="myuw-profile"
                 login-url="https://wisc.edu/"
                 logout-url="https://wisc.edu/"
-                session-endpoint="./session.json"
-                color="#fb686d">
+                session-endpoint="./session.json">
                 <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
                 <a href="https://wisc.edu" slot="nav-item">STAR</a>
             </myuw-profile>
@@ -89,6 +88,9 @@
             <div class="demo-item">
                 <button aria-label="restore demo session" onclick="setSession('./session.json')">Restore demo session</button>
             </div>
+            <div class="demo-item">
+                <button aria-label="set missing session-endpoint" onclick="setSession(null)">Set missing session endpoint</button>
+            </div>
         </div>
         
         <!-- Functions for demo content -->
@@ -97,11 +99,10 @@
                 if (newColor.indexOf('#') < 0) {
                     newColor = '#' + newColor;
                 }
-                document.getElementsByTagName('myuw-profile')[0].setAttribute('color', newColor);
+                document.getElementsByTagName('myuw-profile')[0].setAttribute('background-color', newColor);
             }
 
             function setSession(session) {
-                console.log(session);
                 // Remove profile from DOM
                 document.getElementsByTagName('myuw-profile')[0].remove();
                 // Construct new profile template
@@ -109,12 +110,14 @@
                 newProfileTemplate.setAttribute('slot', 'myuw-profile');
                 newProfileTemplate.setAttribute('login-url', 'https://wisc.edu/');
                 newProfileTemplate.setAttribute('logout-url', 'https://wisc.edu/');
-                newProfileTemplate.setAttribute('session-endpoint', session);
                 newProfileTemplate.setAttribute('color', '#fb686d');
                 newProfileTemplate.innerHTML = `
                     <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
                     <a href="https://wisc.edu" slot="nav-item">STAR</a>
                 `;
+                if (session) {
+                    newProfileTemplate.setAttribute('session-endpoint', session);
+                }
                 // Reinsert into DOM   
                 document.getElementsByTagName('myuw-app-bar')[0].appendChild(newProfileTemplate);
             }

@@ -51,6 +51,7 @@
         font-weight: 500;
         font-size: 18px;
         font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
+        background-color: var( --myuw-profile-background-color, #fb686d);
         user-select: none;
         color: white;
         text-transform: capitalize;
@@ -200,7 +201,7 @@ class MyUWProfile extends HTMLElement {
             'login-url', 
             'logout-url', 
             'open-right',
-            'color'
+            'background-color'
         ];
     }
 
@@ -217,7 +218,7 @@ class MyUWProfile extends HTMLElement {
         this['login-url']           = this.getAttribute('login-url');
         this['logout-url']          = this.getAttribute('logout-url');
         this['session-endpoint']    = this.getAttribute('session-endpoint');
-        this['color']               = this.getAttribute('color');
+        this['background-color']    = this.getAttribute('background-color');
         this['user'] = false;
 
         if(this.getAttribute('open-right') !== null){
@@ -296,7 +297,7 @@ class MyUWProfile extends HTMLElement {
         this.updateAttribute('logout-url');
         this.updateAttribute('session-endpoint');
         this.updateAttribute('open-right');
-        this.updateAttribute('color');
+        this.updateAttribute('background-color');
     }
 
     // Update the component with attribute values
@@ -315,9 +316,8 @@ class MyUWProfile extends HTMLElement {
                     this.shadowRoot.getElementById('myuw-profile-nav').classList.add('open-right');
                 }
                 break;
-            case 'color':
-                console.log('updating color to: ' + this['color']);
-                this.shadowRoot.getElementById('myuw-profile-circle-initial').style.backgroundColor = this['color'];
+            case 'background-color':
+                this.shadowRoot.getElementById('myuw-profile-circle-initial').style.backgroundColor = this['background-color'];
                 break;
         }
     }
