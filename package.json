@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/myuw-web-components/myuw-profile#readme",
   "devDependencies": {
-    "superstatic": "^5.0.1"
+    "superstatic": "^5.0.1",
+    "tota11y": "^0.1.6"
   }
 }
