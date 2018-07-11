@@ -4,32 +4,126 @@
             body {
                 padding: 0;
                 margin: 0;
+                background: #ccc;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .demo-content {
+                padding: 0 36px;
+            }
+            .demo-item {
+                height: 48px;
+                display: flex;
+                justify-content: start;
+                align-content: center;
+                align-items: flex-end;
+                flex-direction: row;
+            }
+            .demo-item .column {
+                display: flex;
+                flex-direction: column;
+            }
+            .demo-item label {
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+            .demo-item input {
+                height: 36px;
+                border-radius: 5px;
+                margin-right: 8px;
+                font-size: 14px;
+
+                border: none;
+            }
+            .demo-item button {
+                min-width: 48px;
+                min-height: 24px;
+                padding: 8px 8px;
+                font-size: 14px;
+                overflow-y: hidden;
+                border-radius: 5px;
+                transition: background 0.15s ease-in-out;
+            }
+            .demo-item button:hover {
+                background: #ebebeb;
+                cursor: pointer;
             }
         </style>
-        <script src="https://unpkg.com/@myuw-web-components/myuw-app-styles/myuw-app-styles.js"></script>
-        <link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-app-bar@1.0.0/myuw-app-bar.html">
+        <script src="https://cdn.rawgit.com/myuw-web-components/myuw-app-styles/6f62858b/myuw-app-styles.js"></script>
+        <link rel="import" href="https://cdn.rawgit.com/myuw-web-components/myuw-app-bar/86b5c15b/myuw-app-bar.html">
         <link rel="import" href="myuw-profile.html">
 
     </head>
     <body>
-
+        <!-- App bar with profile button -->
         <myuw-app-bar
             theme-name="MyUW"
             theme-url=""
-            app-name="Component Test"
+            app-name="Profile Demo"
             app-url=""
             background="rgb(197, 5, 12)"
-            color="white"
-        >
+            color="white">
             <myuw-profile 
                 slot="myuw-profile"
                 login-url="https://wisc.edu/"
                 logout-url="https://wisc.edu/"
-                session-endpoint="./session.json"
-            >
-                <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
-                <a href="https://wisc.edu" slot="nav-item">STAR</a>
+                session-endpoint="./session.json">
+                <a href="#" slot="nav-item">UW Madison Home</a>
+                <a href="#" slot="nav-item">STAR</a>
             </myuw-profile>
         </myuw-app-bar>
+
+        <!-- Demo content -->
+        <div class="demo-content">
+            <h1>Demo</h1>
+            <div class="demo-item">
+                <div class="column">
+                    <label for="newColor">Color: </label>
+                    <input id="newColor" type="text" placeholder="#888">
+                </div>
+                <button aria-label="set profile button color" onclick="setColor(newColor.value)">Set profile color</button>
+            </div>
+            <div class="demo-item">
+                <button aria-label="set no session" onclick="setSession('jargon')">No session</button>
+            </div>
+            <div class="demo-item">
+                <button aria-label="restore demo session" onclick="setSession('./session.json')">Restore demo session</button>
+            </div>
+            <div class="demo-item">
+                <button aria-label="set missing session-endpoint" onclick="setSession(null)">Set missing session endpoint</button>
+            </div>
+        </div>
+        
+        <!-- Functions for demo content -->
+        <script>
+            function setColor(newColor) {
+                if (newColor.indexOf('#') < 0) {
+                    newColor = '#' + newColor;
+                }
+                document.getElementsByTagName('myuw-profile')[0].setAttribute('background-color', newColor);
+            }
+
+            function setSession(session) {
+                // Remove profile from DOM
+                document.getElementsByTagName('myuw-profile')[0].remove();
+                // Construct new profile template
+                var newProfileTemplate = document.createElement('myuw-profile');
+                newProfileTemplate.setAttribute('slot', 'myuw-profile');
+                newProfileTemplate.setAttribute('login-url', 'https://wisc.edu/');
+                newProfileTemplate.setAttribute('logout-url', 'https://wisc.edu/');
+                newProfileTemplate.setAttribute('color', '#fb686d');
+                newProfileTemplate.innerHTML = `
+                    <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
+                    <a href="https://wisc.edu" slot="nav-item">STAR</a>
+                `;
+                if (session) {
+                    newProfileTemplate.setAttribute('session-endpoint', session);
+                }
+                // Reinsert into DOM   
+                document.getElementsByTagName('myuw-app-bar')[0].appendChild(newProfileTemplate);
+            }
+        </script>
+
+        <!-- Accessibility tester -->
+        <script src="./node_modules/tota11y/build/tota11y.min.js"></script>
     </body>
 </html>

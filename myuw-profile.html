@@ -16,6 +16,7 @@
         font-size: 14px;
         position: relative;
         display: inline-block;
+        transition: background .25s cubic-bezier(0.0, 0.0, 0.2, 1);
     }
 
     #myuw-profile-login.hidden {
@@ -23,15 +24,25 @@
     }
 
     #myuw-profile-circle {
-        position: relative;
         display: inline-block;
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        outline: none;
+        border-radius: 50%;
+        height: 42px;
+        width: 42px;
+        min-width: initial;
+        margin-left: 8px;
+        padding: 4px;
+        text-transform: uppercase;
+        text-align: center;
+        background: transparent;
+        border-color: transparent;
+        transition: background .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+
+    #myuw-profile-circle:hover,
+    #myuw-profile-login:hover {
         cursor: pointer;
+        background: rgba(0,0,0,0.12);
     }
 
     #myuw-profile-circle-initial {
@@ -40,9 +51,20 @@
         font-weight: 500;
         font-size: 18px;
         font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
+        background-color: var( --myuw-profile-background-color, #fb686d);
         user-select: none;
         color: white;
         text-transform: capitalize;
+        border-radius: 50%;
+        display: block;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        height: 33px;
+        width: 33px;
+        line-height: 33px;
+        font-size: 18px;
+        font-weight: 400;
     }
 
     #myuw-profile-wrapper {
@@ -64,15 +86,17 @@
         margin: 0;
         padding: 0;
         font-size: 14px;
+        z-index: 101;
 
         transform-origin: top right;
         transform: scale(0);
         opacity: 0;
-        transition: opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1), transform .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+        visibility: hidden;
+        transition: visibility 0s, opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1), transform .25s cubic-bezier(0.0, 0.0, 0.2, 1);
 
-        -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
-        -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 0.75);
-        box-shadow:         0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+        -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+        -moz-box-shadow:    0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+        box-shadow:         0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
     }
 
     #myuw-profile-nav.open-right {
@@ -84,6 +108,7 @@
     #myuw-profile-nav.visible {
         transform: scale(1);
         opacity: 1;
+        visibility: visible;
     }
 
     #myuw-profile-nav p {
@@ -94,55 +119,81 @@
     #myuw-profile-nav a,
     #myuw-profile-nav p,
     ::slotted(a),
-    ::slotted(p){
+    ::slotted(p) {
         transition: all .3s ease;
         position: relative;
         font-size: 15px;
         font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
-        display: block;
-        padding: 14px 16px;
-        color: black;
+        padding: 3px 16px;
+        color: rgba(0,0,0,0.87);
         text-decoration: none;
-        background-color: #f9f9f9;
-        border-bottom: solid 1px #e5e5e5;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #e5e5e5;
         user-select: none;
+        outline: none;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        min-height: 48px;
+        height: 48px;
+        -webkit-align-content: center;
+        align-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
     }
 
-    #myuw-profile-nav a:first-child,
-    #myuw-profile-nav p:first-child {
-        padding: 14px 16px;
-        font-weight: bold;
-        background-color: white;
+    #myuw-profile-nav #myuw-profile-nav-user {
+        font-weight: 600;
+        text-transform: capitalize;
+        background-color: rgb(255,255,255);
+        border-bottom: none;
     }
 
-    #myuw-profile-nav a:first-child:hover,
-    #myuw-profile-nav p:first-child:hover {
-        background-color: white;
+    #myuw-profile-nav #myuw-profile-nav-user:hover {
+        background-color: rgb(255,255,255);
     }
 
     #myuw-profile-nav a:hover,
+    #myuw-profile-nav a:focus,
     #myuw-profile-nav p:hover,
+    #myuw-profile-nav p:focus,
     ::slotted(a:hover),
-    ::slotted(p:hover)  {
-        background-color: rgba(158,158,158,0.2);
+    ::slotted(a:focus),
+    ::slotted(p:hover),
+    ::slotted(p:focus)  {
+        background-color: #ececec;
     }
     </style>
 
     <a href="#" id="myuw-profile-login" class="hidden">Login</a>
 
     <div id="myuw-profile-wrapper" class="hidden">
-            <div id="myuw-profile-circle">
-                <p id="myuw-profile-circle-initial">B</p>
-            </div>
+        <button id="myuw-profile-circle" 
+            aria-label="profile menu" 
+            aria-haspopup="true" 
+            aria-controls="myuw-profile-nav" 
+            aria-expanded="false">
+            <p id="myuw-profile-circle-initial">B</p>
+        </button>
 
-            <div id="myuw-profile-nav">
-                <p id="myuw-profile-nav-user">Bucky</p>
+        <ul id="myuw-profile-nav" 
+            role="menu" 
+            tabindex="-1" 
+            aria-labelledby="myuw-profile-circle">
+            <p id="myuw-profile-nav-user"></p>
+            <li role="menuitem">
                 <slot name="nav-item"></slot>
-                <a href="#">Settings</a>
+            </li>
+            <li role="menuitem">
                 <a id="myuw-profile-logout" href="#">Logout</a>
-            </div>
+            </li>
+        </ul>
     </div>
-
 </template>
 <script>
 class MyUWProfile extends HTMLElement {
@@ -158,7 +209,14 @@ class MyUWProfile extends HTMLElement {
         this.shadowRoot.appendChild(MyUWProfile.template.content.cloneNode(true));
     }
 
-    static get observedAttributes() {return ['login-url', 'logout-url', 'open-right']; }
+    static get observedAttributes() {
+        return [
+            'login-url', 
+            'logout-url', 
+            'open-right',
+            'background-color'
+        ];
+    }
 
     attributeChangedCallback(name, oldValue, newValue){
         // Update the attribute internally
@@ -173,14 +231,15 @@ class MyUWProfile extends HTMLElement {
         this['login-url']           = this.getAttribute('login-url');
         this['logout-url']          = this.getAttribute('logout-url');
         this['session-endpoint']    = this.getAttribute('session-endpoint');
+        this['background-color']    = this.getAttribute('background-color');
         this['user'] = false;
 
-        if(this.getAttribute('open-right') !== null){
+        if (this.getAttribute('open-right') !== null) {
             this['open-right'] = true;
         }
 
         // If the session endpoint is set, fetch session info
-        if(this['session-endpoint']){
+        if (this['session-endpoint']) {
             fetch(this['session-endpoint'])
             .then(res => {
 
@@ -217,8 +276,9 @@ class MyUWProfile extends HTMLElement {
         window.addEventListener('click', e => {
             let nav = this.shadowRoot.getElementById('myuw-profile-nav');
 
-            if(nav.classList.contains('visible')){
-                nav.classList.remove('visible')
+            if (nav.classList.contains('visible')) {
+                nav.classList.remove('visible');
+                this.shadowRoot.getElementById('myuw-profile-circle').setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -242,8 +302,21 @@ class MyUWProfile extends HTMLElement {
             and the menu will never open.
         */
         this.shadowRoot.getElementById('myuw-profile-circle').addEventListener('click', e => {
+            // Find menu button and the first nav list item
+            let nav = this.shadowRoot.getElementById('myuw-profile-nav');
+            let menuButton = this.shadowRoot.getElementById('myuw-profile-circle');
+            
             e.stopPropagation();
-            this.shadowRoot.getElementById('myuw-profile-nav').classList.toggle('visible');
+            nav.classList.toggle('visible');
+
+            // Focus the menu upon opening, blur on close
+            if (nav.classList.contains('visible')) {
+                nav.focus();
+                menuButton.setAttribute('aria-expanded', 'true');
+            } else {
+                nav.blur();
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
         });
 
         // Update the component to use the new attributes
@@ -251,10 +324,11 @@ class MyUWProfile extends HTMLElement {
         this.updateAttribute('logout-url');
         this.updateAttribute('session-endpoint');
         this.updateAttribute('open-right');
+        this.updateAttribute('background-color');
     }
 
     // Update the component with attribute values
-    updateAttribute(att){
+    updateAttribute(att) {
         switch(att){
             case 'login-url':
                 this.shadowRoot.getElementById('myuw-profile-login').setAttribute('href', this['login-url']);
@@ -268,6 +342,9 @@ class MyUWProfile extends HTMLElement {
                 if(this['open-right']){
                     this.shadowRoot.getElementById('myuw-profile-nav').classList.add('open-right');
                 }
+                break;
+            case 'background-color':
+                this.shadowRoot.getElementById('myuw-profile-circle-initial').style.backgroundColor = this['background-color'];
                 break;
         }
     }
@@ -283,14 +360,12 @@ class MyUWProfile extends HTMLElement {
         If not, the login button will show.
     */
     componentReady() {
-        if(this.user){
+        if (this.user) {
             // Add user's name to first menu item
             this.shadowRoot.getElementById('myuw-profile-nav-user').innerHTML = this.user.firstName;
             // Change the letter in the profile circle
             this.shadowRoot.getElementById('myuw-profile-circle-initial').innerHTML = this.user.firstName.substring(0,1);
-
-            this.setProfileColor();
-
+            // Show the profile bubble
             this.showProfileBubble();
         } else {
             if (this['login-url'] !== null) {
@@ -299,29 +374,6 @@ class MyUWProfile extends HTMLElement {
                 this.hidden = true;
             }
         }
-    }
-
-    /*
-        Programmatically select a profile background
-        color based on the length of the users first name
-        and the first letter of their first name
-    */
-    setProfileColor() {
-        const colors = [
-            '#093145',
-            '#107896',
-            '#829356',
-            '#00A996',
-            '#BCA136',
-            '#744196'
-        ];
-
-        const firstName = this.user.firstName.length;
-        const initial = this.user.firstName.substring(0,1).charCodeAt();
-        const colorIndex = (initial + firstName) % colors.length;
-
-        this.shadowRoot.getElementById('myuw-profile-circle').style.backgroundColor = colors[colorIndex];
-
     }
 
     showLoginButton() {
