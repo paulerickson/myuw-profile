@@ -111,10 +111,6 @@
         visibility: visible;
     }
 
-    #myuw-profile-nav:focus {
-        outline: none;
-    }
-
     #myuw-profile-nav p {
         padding: 0;
         margin: 0;
@@ -151,16 +147,14 @@
         justify-content: flex-start;
     }
 
-    #myuw-profile-nav li:first-child a,
-    #myuw-profile-nav li:first-child p {
+    #myuw-profile-nav #myuw-profile-nav-user {
         font-weight: 600;
         text-transform: capitalize;
         background-color: rgb(255,255,255);
         border-bottom: none;
     }
 
-    #myuw-profile-nav li:first-child a:hover,
-    #myuw-profile-nav li:first-child p:hover {
+    #myuw-profile-nav #myuw-profile-nav-user:hover {
         background-color: rgb(255,255,255);
     }
 
@@ -191,9 +185,7 @@
             role="menu" 
             tabindex="-1" 
             aria-labelledby="myuw-profile-circle">
-            <li role="menuitem">
-                <p id="myuw-profile-nav-user">Bucky</p>
-            </li>
+            <p id="myuw-profile-nav-user"></p>
             <li role="menuitem">
                 <slot name="nav-item"></slot>
             </li>
@@ -242,12 +234,12 @@ class MyUWProfile extends HTMLElement {
         this['background-color']    = this.getAttribute('background-color');
         this['user'] = false;
 
-        if(this.getAttribute('open-right') !== null){
+        if (this.getAttribute('open-right') !== null) {
             this['open-right'] = true;
         }
 
         // If the session endpoint is set, fetch session info
-        if(this['session-endpoint']){
+        if (this['session-endpoint']) {
             fetch(this['session-endpoint'])
             .then(res => {
 
@@ -310,8 +302,10 @@ class MyUWProfile extends HTMLElement {
             and the menu will never open.
         */
         this.shadowRoot.getElementById('myuw-profile-circle').addEventListener('click', e => {
+            // Find menu button and the first nav list item
             let nav = this.shadowRoot.getElementById('myuw-profile-nav');
             let menuButton = this.shadowRoot.getElementById('myuw-profile-circle');
+            
             e.stopPropagation();
             nav.classList.toggle('visible');
 
