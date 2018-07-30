@@ -5,8 +5,8 @@
 Add the following import to your page's `<head>`:
 
 ```html
-<script type="module" src="https://unpkg.com/@myuw-web-components/myuw-profile?module"></script>
-<script nomodule src="https://unpkg.com/@myuw-web-components/myuw-profile"></script>
+<script type="module" src="https://unpkg.com/@myuw-web-components/myuw-profile@^1?module"></script>
+<script nomodule src="https://unpkg.com/@myuw-web-components/myuw-profile@^1"></script>
 ```
 
 Use the component's HTML tag wherever you want:
