@@ -10,7 +10,7 @@
     "serve": "live-server",
     "start": "run-p watch serve",
     "prepare": "npm run build",
-    "pages": "mkdir -p demo && cp -r dist demo/dist && cp index.html demo/index.html && gh-pages -d demo",
+    "pages": "mkdir -p demo && cp -r dist demo/dist && cp -r test demo/test && cp index.html demo/index.html && gh-pages -d demo",
     "postpublish": "npm run pages"
   },
   "repository": {
