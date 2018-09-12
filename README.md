@@ -39,5 +39,6 @@ Use the component's HTML tag wherever you want:
 - `--myuw-profile-font`: Set the font stack for this component
 - `--myuw-profile-login-color`: Set the font color of the "Login" button
 - `--myuw-profile-background-color`: Set the background color of the circular menu button
+- `--myuw-menu-color`: The text color of links/buttons in the profile menu
 
 For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
