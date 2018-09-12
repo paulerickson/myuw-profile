@@ -1,9 +1,11 @@
 # myuw-profile versions
 
-## 1.2.0
+## 1.2.1
 
 ### Changed
 
 * Set standard top-bar button margin on containing element
 * Removed left-only margin to better support usage outside of myuw-app-bar
 * Add use of a CSS variable for menu link color (myuw-menu-color)
+* Adjust circle button appearance to be centered better
+* Add font weight CSS variable

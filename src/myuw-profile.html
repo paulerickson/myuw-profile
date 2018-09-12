@@ -9,7 +9,7 @@
     text-decoration: none;
     color: var( --myuw-profile-login-color, var(--myuw-primary-color, white) );
     padding: 10px 13px;
-    font-weight: bold;
+    font-weight: var(--myuw-profile-font-weight, 600);
     letter-spacing: 0px;
     font-size: 14px;
     position: relative;
@@ -22,7 +22,8 @@
 }
 
 #myuw-profile-circle {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     outline: none;
     border-radius: 50%;
     height: 42px;
@@ -45,9 +46,9 @@
 #myuw-profile-circle-initial {
     padding: 0;
     margin: 0;
-    font-weight: 500;
+    font-weight: var(--myuw-profile-font-weight, 400);
     font-size: 18px;
-    font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
+    font-family: var( --myuw-profile-font, var(--myuw-font, 'Roboto', Arial, sans-serif) );
     background-color: var( --myuw-profile-background-color, #fb686d);
     user-select: none;
     color: white;
@@ -57,11 +58,10 @@
     margin: 0;
     overflow: hidden;
     position: relative;
-    height: 33px;
-    width: 33px;
-    line-height: 33px;
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
     font-size: 18px;
-    font-weight: 400;
 }
 
 #myuw-profile-wrapper {
