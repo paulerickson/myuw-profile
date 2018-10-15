@@ -60,7 +60,6 @@
 
         <script type="module" src="./dist/myuw-profile.mjs"></script>
         <script nomodule src="./dist/myuw-profile.mjs"></script>
-
     </head>
     <body>
         <!-- App bar with profile button -->
@@ -96,6 +95,9 @@
                 <button aria-label="restore demo session" onclick="setPortalSession()">Set portal session</button>
             </div>
             <div class="demo-item">
+              <button aria-label="set a session without user info" onclick="setNonstandardSession()">Set session without person info</button>
+            </div>
+            <div class="demo-item">
                 <button aria-label="log in with other data" onclick="customLogin()">Set custom session</button>
             </div>
         </div>
@@ -120,6 +122,18 @@
               bubbles: true,
               detail: {
                 person: null
+              }
+            });
+            document.dispatchEvent(customEvent);
+          }
+
+          function setNonstandardSession() {
+            var customEvent = new CustomEvent('myuw-login', {
+              bubbles: true,
+              detail: {
+                person: {
+                  "someOtherAttribute": "What is this"
+                }
               }
             });
             document.dispatchEvent(customEvent);

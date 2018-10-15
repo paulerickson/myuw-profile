@@ -1,4 +1,6 @@
 <style>
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
 :host([hidden]) {
     display: none;
 }
@@ -183,6 +185,10 @@
     border-bottom: none;
 }
 
+#myuw-profile-nav #myuw-profile-nav-user.hidden {
+  display: none;
+}
+
 #myuw-profile-nav #myuw-profile-nav-user:hover {
     background-color: rgb(255,255,255);
 }
@@ -210,7 +216,7 @@
         aria-haspopup="true"
         aria-controls="myuw-profile-nav"
         aria-expanded="false">
-        <p id="myuw-profile-circle-initial">B</p>
+        <p id="myuw-profile-circle-initial"><i class="material-icons">person</i></p>
     </button>
 
     <ul id="myuw-profile-nav"

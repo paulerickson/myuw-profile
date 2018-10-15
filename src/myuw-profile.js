@@ -54,7 +54,7 @@ class MyUWProfile extends HTMLElement {
           if (event.detail.person) {
             this.componentReady(event.detail.person);
           } else {
-            this.showLoginButton();
+            this.componentReady();
           }
         }, false);
 
@@ -103,7 +103,7 @@ class MyUWProfile extends HTMLElement {
             }
         });
 
-        this.componentReady();
+        // this.componentReady();
 
         // Update the component to use the new attributes
         this.updateAttribute('login-url');
@@ -128,24 +128,26 @@ class MyUWProfile extends HTMLElement {
       }
     }
 
-    /*
-        Function to run after the session endpoint
-        has been hit and the component has all the
-        data that it needs to render.
-
-        If user data was returned from the endpoint,
-        the profile bubble will show.
-
-        If not, the login button will show.
+   /**
+    * Runs after component detects the 'myuw-login' event and receives
+    * the required parameter
+    * @param {*} person 
     */
-    componentReady(user) {
-      if (user) {
-        // Add user's name to first menu item
-        this.$displayName.innerHTML = user.firstName;
-        // Change the letter in the profile circle
-        this.$circle.innerHTML = user.firstName.substring(0,1);
-        // Show the profile bubble
-        this.showProfileBubble();
+    componentReady(person) {
+      if (person) {
+        if (person.firstName) {
+          // Add user's name to first menu item
+          this.$displayName.classList.remove('hidden');
+          this.$displayName.innerHTML = person.firstName;
+          // Change the letter in the profile circle
+          this.$circle.innerHTML = person.firstName.substring(0,1);
+          // Show the profile bubble
+          this.showProfileBubble();
+        } else {
+          this.$displayName.classList.add('hidden');
+          this.$circle.innerHTML = '<i class="material-icons">person</i>';
+          this.showProfileBubble();
+        }
       } else {
         this.showLoginButton();
       }
