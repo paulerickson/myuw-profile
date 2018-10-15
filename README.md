@@ -26,6 +26,7 @@ To tell the component that there is an active session, dispatch a CustomEvent ca
 
 ```js
 var customEvent = new CustomEvent('myuw-login', {
+  bubbles: true, // optional
   detail: { // required object "detail"
     person: { // required object "person"
       "firstName": "User" // required property "firstName"
@@ -38,6 +39,7 @@ document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
 
 Notes:
 
+- The "bubbles" property is required if you dispatch the event from an element/scope other than `document`
 - The "detail" object is required by the CustomEvent spec
 - The "person" object is required by the myuw-profile component
 - The "firstName" attribute determines the letter displayed in the profile menu button and the name displayed within the menu

@@ -49,7 +49,7 @@ class MyUWProfile extends HTMLElement {
          * Listen for custom event to receive session information
          * @param {CustomEvent} event Event that should pass "person" information to display
          */
-        document.getElementsByTagName('myuw-profile')[0].addEventListener('myuw-login', (event) => {
+        document.addEventListener('myuw-login', (event) => {
           // Process data passed with event
           if (event.detail.person) {
             this.componentReady(event.detail.person);

@@ -105,22 +105,24 @@
           // Add event listener to profile component
           function customLogin(event) {
             var customEvent = new CustomEvent('myuw-login', {
+              bubbles: true,
               detail: {
                 person: {
                   "firstName": "Shibboleth"
                 }
               }
             });
-            document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+            document.dispatchEvent(customEvent);
           };
 
           function logout() {
             var customEvent = new CustomEvent('myuw-login', {
+              bubbles: true,
               detail: {
                 person: null
               }
             });
-            document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+            document.dispatchEvent(customEvent);
           }
 
           function setPortalSession() {
@@ -135,28 +137,31 @@
 
                     // Set user data to the component
                     var customEvent = new CustomEvent('myuw-login', {
+                      bubbles: true,
                       detail: {
                         person: data.person
                       }
                     });
-                    document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+                    document.dispatchEvent(customEvent);
                   })
                 } else {
                   var customEvent = new CustomEvent('myuw-login', {
+                    bubbles: true,
                     detail: {
                       person: null
                     }
                   });
-                  document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+                  document.dispatchEvent(customEvent);
                 }
             })
             .catch( e => {
               var customEvent = new CustomEvent('myuw-login', {
+                bubbles: true,
                 detail: {
                   person: null
                 }
               });
-              document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+              document.dispatchEvent(customEvent);
             } );
           }
 
