@@ -108,7 +108,6 @@ class MyUWProfile extends HTMLElement {
         // Update the component to use the new attributes
         this.updateAttribute('login-url');
         this.updateAttribute('logout-url');
-        this.updateAttribute('open-right');
         this.updateAttribute('background-color');
     }
 
@@ -123,11 +122,6 @@ class MyUWProfile extends HTMLElement {
           this.shadowRoot.getElementById('myuw-profile-logout').setAttribute('href', this['logout-url']);
           break;
 
-        case 'open-right':
-          if(this['open-right']){
-            this.$nav.classList.add('open-right');
-          }
-          break;
         case 'background-color':
           this.$circle.style.backgroundColor = this['background-color'];
           break;
