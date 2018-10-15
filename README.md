@@ -29,7 +29,7 @@ var customEvent = new CustomEvent('myuw-login', {
   bubbles: true, // optional
   detail: { // required object "detail"
     person: { // required object "person"
-      "firstName": "User" // required property "firstName"
+      "firstName": "User" // optional property "firstName"
     }
   }
 });
@@ -42,7 +42,7 @@ Notes:
 - The "bubbles" property is required if you dispatch the event from an element/scope other than `document`
 - The "detail" object is required by the CustomEvent spec
 - The "person" object is required by the myuw-profile component
-- The "firstName" attribute determines the letter displayed in the profile menu button and the name displayed within the menu
+- The "firstName" attribute determines the letter displayed in the profile menu button and the name displayed within the menu. If no first name is provided, the button will show a generic "person" icon
 
 #### Configurable properties
 
