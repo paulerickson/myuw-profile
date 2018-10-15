@@ -66,19 +66,17 @@
         <!-- App bar with profile button -->
         <myuw-app-bar
             theme-name="MyUW"
-            theme-url=""
             app-name="Profile Demo"
             app-url=""
             background="rgb(197, 5, 12)"
             color="white">
-            <myuw-profile
-                slot="myuw-profile"
-                login-url="https://wisc.edu/"
-                logout-url="https://wisc.edu/"
-                session-endpoint="./test/session.json">
-                <a href="#" slot="nav-item">UW Madison Home</a>
-                <a href="#" slot="nav-item">STAR</a>
-            </myuw-profile>
+          <myuw-profile
+              slot="myuw-profile"
+              login-url="https://wisc.edu/"
+              logout-url="https://wisc.edu/">
+              <a href="#" slot="nav-item">UW Madison Home</a>
+              <a href="#" slot="nav-item">STAR</a>
+          </myuw-profile>
         </myuw-app-bar>
 
         <!-- Demo content -->
@@ -92,47 +90,82 @@
                 <button aria-label="set profile button color" onclick="setColor(newColor.value)">Set profile color</button>
             </div>
             <div class="demo-item">
-                <button aria-label="set no session" onclick="setSession('jargon')">No session</button>
+                <button aria-label="set no session" onclick="logout()">No session</button>
             </div>
             <div class="demo-item">
-                <button aria-label="restore demo session" onclick="setSession('./test/session.json')">Restore demo session</button>
+                <button aria-label="restore demo session" onclick="setPortalSession()">Set portal session</button>
             </div>
             <div class="demo-item">
-                <button aria-label="set missing session-endpoint" onclick="setSession(null)">Set missing session endpoint</button>
+                <button aria-label="log in with other data" onclick="customLogin()">Set custom session</button>
             </div>
         </div>
 
         <!-- Functions for demo content -->
         <script>
+          // Add event listener to profile component
+          function customLogin(event) {
+            var customEvent = new CustomEvent('myuw-login', {
+              detail: {
+                person: {
+                  "firstName": "Shibboleth"
+                }
+              }
+            });
+            document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+          };
+
+          function logout() {
+            var customEvent = new CustomEvent('myuw-login', {
+              detail: {
+                person: null
+              }
+            });
+            document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+          }
+
+          function setPortalSession() {
+            fetch('./test/session.json')
+              .then(res => {
+                // Check if the request was valid
+                if(res.status === 200){
+                  res.json()
+                  .then( data => {
+                    // If data.person is not set, return.
+                    if(!data.person) { return; }
+
+                    // Set user data to the component
+                    var customEvent = new CustomEvent('myuw-login', {
+                      detail: {
+                        person: data.person
+                      }
+                    });
+                    document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+                  })
+                } else {
+                  var customEvent = new CustomEvent('myuw-login', {
+                    detail: {
+                      person: null
+                    }
+                  });
+                  document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+                }
+            })
+            .catch( e => {
+              var customEvent = new CustomEvent('myuw-login', {
+                detail: {
+                  person: null
+                }
+              });
+              document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);
+            } );
+          }
+
             function setColor(newColor) {
                 if (newColor.indexOf('#') < 0) {
                     newColor = '#' + newColor;
                 }
                 document.getElementsByTagName('myuw-profile')[0].setAttribute('background-color', newColor);
             }
-
-            function setSession(session) {
-                // Remove profile from DOM
-                document.getElementsByTagName('myuw-profile')[0].remove();
-                // Construct new profile template
-                var newProfileTemplate = document.createElement('myuw-profile');
-                newProfileTemplate.setAttribute('slot', 'myuw-profile');
-                newProfileTemplate.setAttribute('login-url', 'https://wisc.edu/');
-                newProfileTemplate.setAttribute('logout-url', 'https://wisc.edu/');
-                newProfileTemplate.setAttribute('color', '#fb686d');
-                newProfileTemplate.innerHTML = `
-                    <a href="https://wisc.edu" slot="nav-item">UW Madison Home</a>
-                    <a href="https://wisc.edu" slot="nav-item">STAR</a>
-                `;
-                if (session) {
-                    newProfileTemplate.setAttribute('session-endpoint', session);
-                }
-                // Reinsert into DOM
-                document.getElementsByTagName('myuw-app-bar')[0].appendChild(newProfileTemplate);
-            }
         </script>
-
-        <!-- Accessibility tester -->
-        <script src="./node_modules/tota11y/build/tota11y.min.js"></script>
     </body>
 </html>

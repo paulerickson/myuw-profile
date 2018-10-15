@@ -15,20 +15,38 @@ Use the component's HTML tag wherever you want:
 <myuw-profile
     login-url=""
     logout-url=""
-    session-endpoint=""
     background-color=""
-    open-right
 >
 </myuw-profile>
 ```
+
+### Login event
+
+To tell the component that there is an active session, dispatch a CustomEvent called "myuw-login":
+
+```js
+var customEvent = new CustomEvent('myuw-login', {
+  detail: { // required object "detail"
+    person: { // required object "person"
+      "firstName": "User" // required property "firstName"
+    }
+  }
+});
+// Dispatch the event
+document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);       
+```
+
+Notes:
+
+- The "detail" object is required by the CustomEvent spec
+- The "person" object is required by the myuw-profile component
+- The "firstName" attribute determines the letter displayed in the profile menu button and the name displayed within the menu
 
 #### Configurable properties
 
 - **Login URL (login-url):** The URL to redirect users to on login
 - **Logout URL (logout-url):** The Logout URL to redirect users to on logout
-- **Session Endpoint (session-endpoint):** The endpoint URL for session info
 - **Background color (background-color):** Use this to dynamically set the background color of the profile menu button
-- **Open Menu Right (open-right):** Include this attribute if you would like the profile menu to open to the right, instead of left
 
 #### Slots
 
