@@ -1,5 +1,15 @@
 # myuw-profile versions
 
+## 1.2.2
+
+### Added
+
+* Polyfills included in demo page
+
+### Fixed
+
+* Fixed appearance in Firefox
+
 ## 1.2.1
 
 ### Changed
