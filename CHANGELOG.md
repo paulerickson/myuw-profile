@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.3.0
+
+### Added
+
+* Component listens for a CustomEvent called "myuw-login" and sets up its appearance accordingly. See the README usage guide.
+
 ## 1.2.2
 
 ### Added

@@ -1,4 +1,6 @@
 <style>
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
 :host([hidden]) {
     display: none;
 }
@@ -103,12 +105,6 @@
     box-shadow:         0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
 }
 
-#myuw-profile-nav.open-right {
-    left: 0;
-    right: inherit;
-    transform-origin: top left;
-}
-
 #myuw-profile-nav.visible {
     transform: scale(1);
     opacity: 1;
@@ -189,6 +185,10 @@
     border-bottom: none;
 }
 
+#myuw-profile-nav #myuw-profile-nav-user.hidden {
+  display: none;
+}
+
 #myuw-profile-nav #myuw-profile-nav-user:hover {
     background-color: rgb(255,255,255);
 }
@@ -216,7 +216,7 @@
         aria-haspopup="true"
         aria-controls="myuw-profile-nav"
         aria-expanded="false">
-        <p id="myuw-profile-circle-initial">B</p>
+        <p id="myuw-profile-circle-initial"><i class="material-icons">person</i></p>
     </button>
 
     <ul id="myuw-profile-nav"
