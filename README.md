@@ -9,7 +9,7 @@ Add the following import to your page's `<head>`:
 <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-profile@^1"></script>
 ```
 
-*Note: You may want to specify a specific version of the component to ensure stability. See [the change log](CHANGELOG.md) or the [npm entry](https://www.npmjs.com/package/@myuw-web-components/myuw-profile) for version information.
+*Note: You may want to specify a specific version of the component to ensure stability. See [the change log](CHANGELOG.md) or the [npm entry](https://www.npmjs.com/package/@myuw-web-components/myuw-profile) for version information.*
 
 Use the component's HTML tag wherever you want:
 
