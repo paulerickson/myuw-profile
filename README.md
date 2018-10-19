@@ -9,6 +9,8 @@ Add the following import to your page's `<head>`:
 <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-profile@^1"></script>
 ```
 
+*Note: You may want to specify a specific version of the component to ensure stability. See [the change log](CHANGELOG.md) or the [npm entry](https://www.npmjs.com/package/@myuw-web-components/myuw-profile) for version information.
+
 Use the component's HTML tag wherever you want:
 
 ```HTML
@@ -20,41 +22,57 @@ Use the component's HTML tag wherever you want:
 </myuw-profile>
 ```
 
-### Login event
 
-To tell the component that there is an active session, dispatch a CustomEvent called "myuw-login":
+### Displaying the component
+
+Because it has multiple states depending on whether there is an active session, all elements of the profile component are hidden by default. The component listens for a CustomEvent called "myuw-login" and its state is dependent on the data you pass when you dispatch that event:
 
 ```js
+/*
+    Notes about configuring the event:
+    - The event MUST contain a "detail" object. The contents of the detail object determine what the component will display:
+        - An empty "detail" object ( detail: {} ) will result in the login button being displayed
+        - An empty "person" object ( person: {} ) will result in a generic session being displayed (using the person icon). This should only be used when the session doesn't provide a user's name, username, email, etc.
+        - A person object containing a "firstName" ( person: {firstName: "Name"} ) will result in the full session display
+    - The "bubbles" property is optional unless you're dispatching the event from an element/scope other than "document"
+*/
 var customEvent = new CustomEvent('myuw-login', {
   bubbles: true, // optional
-  detail: { // required object "detail"
-    person: { // required object "person"
-      "firstName": "User" // optional property "firstName"
+  detail: { // required always
+    person: { // required for generic session display
+      "firstName": "User" // required for full session display
     }
   }
 });
 // Dispatch the event
-document.getElementsByTagName('myuw-profile')[0].dispatchEvent(customEvent);       
+document.dispatchEvent(customEvent);    
 ```
 
-Notes:
+#### Initial page load
 
-- The "bubbles" property is required if you dispatch the event from an element/scope other than `document`
-- The "detail" object is required by the CustomEvent spec
-- The "person" object is required by the myuw-profile component
-- The "firstName" attribute determines the letter displayed in the profile menu button and the name displayed within the menu. If no first name is provided, the button will show a generic "person" icon
+If you want the component to show something on the initial page load (and not be hidden), make sure to dispatch the "myuw-login" event **after** all web components are loaded and upgraded (i.e. ready to be interacted with). The webcomponentsjs polyfill provides and event you can hook into:
 
-#### Configurable properties
+```js
+document.addEventListener('WebComponentsReady', function() {
+    var customEvent = new CustomEvent('myuw-login', {
+        // Configure the event data to display what you want
+    });
+    // Dispatch the event
+    document.dispatchEvent(customEvent);    
+});
+```
+
+### Configurable properties
 
 - **Login URL (login-url):** The URL to redirect users to on login
 - **Logout URL (logout-url):** The Logout URL to redirect users to on logout
 - **Background color (background-color):** Use this to dynamically set the background color of the profile menu button
 
-#### Slots
+### Slots
 
 - **Profile Navigation Item (nav-item):** Add a custom item to the profile button's navigation menu, this slot expects an `<a>` tag
 
-#### CSS Variables
+### CSS Variables
 
 - `--myuw-profile-font`: Set the font stack for this component
 - `--myuw-profile-login-color`: Set the font color of the "Login" button
