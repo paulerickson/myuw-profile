@@ -80,3 +80,7 @@ document.addEventListener('WebComponentsReady', function() {
 - `--myuw-menu-color`: The text color of links/buttons in the profile menu
 
 For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
+
+
+Cross-browser testing provided by:<br/>
+<a href="https://www.browserstack.com/"><img width="160" src="https://myuw-web-components.github.io/img/Browserstack-logo.svg" alt="BrowserStack"/></a>
