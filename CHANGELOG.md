@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.3.2
+
+### Fixed 
+
+* Check for valid references before messing with DOM elements/variables
+
 ## 1.3.0
 
 ### Added

@@ -19,12 +19,14 @@ class MyUWProfile extends HTMLElement {
         ];
     }
 
-    attributeChangedCallback(name, oldValue, newValue){
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (typeof this.$circle !== 'undefined' && typeof this[name] !== 'undefined' && this[name] !== null) {
         // Update the attribute internally
         this[name] = newValue;
 
         // Update the component with new att value
         this.updateAttribute(name);
+      }
     }
 
     connectedCallback(){
