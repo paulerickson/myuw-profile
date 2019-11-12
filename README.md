@@ -2,26 +2,31 @@
 
 ## Getting Started
 
-Add the following import to your page's `<head>`:
+Import and include the component as follows, but note that it will not display by default, until initialized through its event API!
 
 ```html
-<script type="module" src="https://unpkg.com/@myuw-web-components/myuw-profile@^1?module"></script>
-<script nomodule src="https://unpkg.com/@myuw-web-components/myuw-profile@^1"></script>
-```
+<!-- import the module -->
+<script type="module" src="https://cdn.my.wisc.edu/@myuw-web-components/myuw-profile@latest/myuw-profile.min.mjs"></script>
 
-*Note: You may want to specify a specific version of the component to ensure stability. See [the change log](CHANGELOG.md) or the [npm entry](https://www.npmjs.com/package/@myuw-web-components/myuw-profile) for version information.*
+<!-- fallback for browsers without ES2015 module support -->
+<script nomodule src="https://cdn.my.wisc.edu/@myuw-web-components/myuw-profile@latest/myuw-profile.min.js"></script>
 
-Use the component's HTML tag wherever you want:
+<!-- initialize -->
+<script>
+  customElements
+    .whenDefined('myuw-profile')
+    .then(() => document.dispatchEvent(new CustomEvent('myuw-login', { detail: {} })))
+  ;
+</script
 
-```HTML
 <myuw-profile
-    login-url=""
-    logout-url=""
-    background-color=""
->
-</myuw-profile>
+  login-url=""
+  logout-url=""
+  background-color=""
+></myuw-profile>
 ```
 
+_Note:_ The evergreen "latest" version can be used for convenience, but in production settings it is recommended to use the latest [release version](https://github.com/myuw-web-components/myuw-profile/releases) specifically, and upgrade only after testing!
 
 ### Displaying the component
 
@@ -45,7 +50,7 @@ var customEvent = new CustomEvent('myuw-login', {
   }
 });
 // Dispatch the event
-document.dispatchEvent(customEvent);    
+document.dispatchEvent(customEvent);
 ```
 
 #### Initial page load
@@ -58,7 +63,7 @@ document.addEventListener('WebComponentsReady', function() {
         // Configure the event data to display what you want
     });
     // Dispatch the event
-    document.dispatchEvent(customEvent);    
+    document.dispatchEvent(customEvent);
 });
 ```
 
