@@ -1,194 +1,166 @@
-<html>
-    <head>
-        <style>
-            body {
-                padding: 0;
-                margin: 0;
-                background: #ccc;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            .demo-content {
-                padding: 0 36px;
-            }
-            .demo-item {
-                height: 48px;
-                display: flex;
-                justify-content: start;
-                align-content: center;
-                align-items: flex-end;
-                flex-direction: row;
-            }
-            .demo-item .column {
-                display: flex;
-                flex-direction: column;
-            }
-            .demo-item label {
-                font-size: 14px;
-                margin-bottom: 4px;
-            }
-            .demo-item input {
-                height: 36px;
-                border-radius: 5px;
-                margin-right: 8px;
-                font-size: 14px;
+<!DOCTYPE html>
+<meta charset="utf-8">
 
-                border: none;
-            }
-            .demo-item button {
-                min-width: 48px;
-                min-height: 24px;
-                padding: 8px 8px;
-                font-size: 14px;
-                overflow-y: hidden;
-                border-radius: 5px;
-                transition: background 0.15s ease-in-out;
-            }
-            .demo-item button:hover {
-                background: #ebebeb;
-                cursor: pointer;
-            }
-        </style>
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+    background: #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .demo-content {
+    padding: 0 36px;
+  }
+  .demo-item {
+    height: 48px;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    align-items: flex-end;
+    flex-direction: row;
+  }
+  .demo-item .column {
+    display: flex;
+    flex-direction: column;
+  }
+  .demo-item label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .demo-item input {
+    height: 36px;
+    border-radius: 5px;
+    margin-right: 8px;
+    font-size: 14px;
+    border: none;
+  }
+  .demo-item button {
+    min-width: 48px;
+    min-height: 24px;
+    padding: 8px 8px;
+    font-size: 14px;
+    overflow-y: hidden;
+    border-radius: 5px;
+    transition: background 0.15s ease-in-out;
+  }
+  .demo-item button:hover {
+    background: #ebebeb;
+    cursor: pointer;
+  }
+</style>
 
-        <script src="https://unpkg.com/css-vars-ponyfill@1"></script>
-        <script>
-          cssVars({shadowDOM: true,watch: true});
-        </script>
-        <!-- Web component polyfill loader -->
-        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+<!-- App bar with profile button -->
+<myuw-app-bar
+  theme-name="MyUW"
+  app-name="Profile Demo"
+  app-url=""
+  background="rgb(197, 5, 12)"
+  color="white"
+>
+  <myuw-profile
+    slot="myuw-profile"
+    login-url="https://wisc.edu/"
+    logout-url="https://wisc.edu/"
+  >
+    <a href="#" slot="nav-item">UW Madison Home</a>
+    <a href="#" slot="nav-item">STAR</a>
+  </myuw-profile>
+</myuw-app-bar>
 
-        <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1?module"></script>
-        <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1"></script>
+<!-- Demo content -->
+<div class="demo-content">
+  <h1>Demo</h1>
+  <div class="demo-item">
+    <input id="newColor" type="color" onchange="controller.setColor(this.value)">
+    <label for="newColor">Profile Color</label>
+  </div>
+  <div class="demo-item">
+    <button aria-label="set no session" onclick="controller.logout()">No session</button>
+  </div>
+  <div class="demo-item">
+    <button aria-label="restore demo session" onclick="controller.setPortalSession()">Set portal session</button>
+  </div>
+  <div class="demo-item">
+    <button aria-label="set a session without user info" onclick="controller.setNonstandardSession()">Set session without person info</button>
+  </div>
+  <div class="demo-item">
+    <button aria-label="log in with other data" onclick="controller.customLogin()">Set custom session</button>
+  </div>
+</div>
 
-        <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1?module"></script>
-        <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1"></script>
+<script src="https://unpkg.com/css-vars-ponyfill@1"></script>
 
-        <script type="module" src="./dist/myuw-profile.mjs"></script>
-        <script nomodule src="./dist/myuw-profile.mjs"></script>
-    </head>
-    <body>
-        <!-- App bar with profile button -->
-        <myuw-app-bar
-            theme-name="MyUW"
-            app-name="Profile Demo"
-            app-url=""
-            background="rgb(197, 5, 12)"
-            color="white">
-          <myuw-profile
-              slot="myuw-profile"
-              login-url="https://wisc.edu/"
-              logout-url="https://wisc.edu/">
-              <a href="#" slot="nav-item">UW Madison Home</a>
-              <a href="#" slot="nav-item">STAR</a>
-          </myuw-profile>
-        </myuw-app-bar>
+<script type="module">
 
-        <!-- Demo content -->
-        <div class="demo-content">
-            <h1>Demo</h1>
-            <div class="demo-item">
-                <div class="column">
-                    <label for="newColor">Color: </label>
-                    <input id="newColor" type="text" placeholder="#888">
-                </div>
-                <button aria-label="set profile button color" onclick="setColor(newColor.value)">Set profile color</button>
-            </div>
-            <div class="demo-item">
-                <button aria-label="set no session" onclick="logout()">No session</button>
-            </div>
-            <div class="demo-item">
-                <button aria-label="restore demo session" onclick="setPortalSession()">Set portal session</button>
-            </div>
-            <div class="demo-item">
-              <button aria-label="set a session without user info" onclick="setNonstandardSession()">Set session without person info</button>
-            </div>
-            <div class="demo-item">
-                <button aria-label="log in with other data" onclick="customLogin()">Set custom session</button>
-            </div>
-        </div>
+  import 'https://cdn.my.wisc.edu/@myuw-web-components/myuw-app-styles@latest/myuw-app-styles.min.mjs';
+  import 'https://cdn.my.wisc.edu/@myuw-web-components/myuw-app-bar@latest/myuw-app-bar.min.mjs';
 
-        <!-- Functions for demo content -->
-        <script>
-          // Add event listener to profile component
-          function customLogin(event) {
-            var customEvent = new CustomEvent('myuw-login', {
-              bubbles: true,
-              detail: {
-                person: {
-                  "firstName": "Shibboleth"
-                }
-              }
-            });
-            document.dispatchEvent(customEvent);
-          };
+  import './dist/myuw-profile.mjs';
 
-          function logout() {
-            var customEvent = new CustomEvent('myuw-login', {
-              bubbles: true,
-              detail: {
-                person: null
-              }
-            });
-            document.dispatchEvent(customEvent);
-          }
+  cssVars({shadowDOM: true,watch: true});
 
-          function setNonstandardSession() {
-            var customEvent = new CustomEvent('myuw-login', {
-              bubbles: true,
-              detail: {
-                person: {
-                  "someOtherAttribute": "What is this"
-                }
-              }
-            });
-            document.dispatchEvent(customEvent);
-          }
+  class Controller {
 
-          function setPortalSession() {
-            fetch('./test/session.json')
-              .then(res => {
-                // Check if the request was valid
-                if(res.status === 200){
-                  res.json()
-                  .then( data => {
-                    // If data.person is not set, return.
-                    if(!data.person) { return; }
+    customLogin(event) {
+      document.dispatchEvent(new CustomEvent('myuw-login', {
+        bubbles: true,
+        detail: {
+          person: { "firstName": "Shibboleth" }
+        }
+      }));
+    }
 
-                    // Set user data to the component
-                    var customEvent = new CustomEvent('myuw-login', {
-                      bubbles: true,
-                      detail: {
-                        person: data.person
-                      }
-                    });
-                    document.dispatchEvent(customEvent);
-                  })
-                } else {
-                  var customEvent = new CustomEvent('myuw-login', {
-                    bubbles: true,
-                    detail: {
-                      person: null
-                    }
-                  });
-                  document.dispatchEvent(customEvent);
-                }
-            })
-            .catch( e => {
-              var customEvent = new CustomEvent('myuw-login', {
-                bubbles: true,
-                detail: {
-                  person: null
-                }
-              });
-              document.dispatchEvent(customEvent);
-            } );
-          }
+    logout() {
+      document.dispatchEvent(new CustomEvent('myuw-login', {
+        bubbles: true,
+        detail: {
+          person: null
+        }
+      }));
+    }
 
-            function setColor(newColor) {
-                if (newColor.indexOf('#') < 0) {
-                    newColor = '#' + newColor;
-                }
-                document.getElementsByTagName('myuw-profile')[0].setAttribute('background-color', newColor);
-            }
-        </script>
-    </body>
-</html>
+    setNonstandardSession() {
+      document.dispatchEvent(new CustomEvent('myuw-login', {
+        bubbles: true,
+        detail: {
+          person: { "someOtherAttribute": "What is this" }
+        }
+      }));
+    }
+
+    async setPortalSession() {
+      try {
+        const res = await fetch('./test/session.json');
+        if (res.status !== 200) {
+          document.dispatchEvent(new CustomEvent('myuw-login', {
+            bubbles: true,
+            detail: { person: null }
+          }));
+          return;
+        }
+        const data = await res.json()
+        if(!data.person) {
+          return;
+        }
+        document.dispatchEvent(new CustomEvent('myuw-login', {
+          bubbles: true,
+          detail: { person: data.person }
+        }));
+      }
+      catch(e) {
+        document.dispatchEvent(new CustomEvent('myuw-login', {
+          bubbles: true,
+          detail: { person: null }
+        }));
+      }
+    }
+
+    setColor(newColor) {
+      document.getElementsByTagName('myuw-profile')[0].setAttribute('background-color', newColor);
+    }
+
+  }
+
+  window.controller = new Controller();
+
+</script>

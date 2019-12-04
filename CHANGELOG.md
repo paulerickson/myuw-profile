@@ -1,8 +1,26 @@
 # myuw-profile versions
 
+## 1.5.0
+
+### Fixed
+
+* Updates to background-color attribute weren't working; now they are.
+* Event handlers get cleaned up on disconnect, preventing duplicates, memory leaks, etc.
+
+### Added
+
+* Escape key dismisses the menu.
+
+### Changed
+
+* Elements are hidden with the semantically-appropriate `hidden` attribute.
+* Example page uses more modern idioms.
+* Simplify/flatten component structure by extracting event handler methods and removing unnecessary property binding logic.
+* Whitespace & style changes
+
 ## 1.3.2
 
-### Fixed 
+### Fixed
 
 * Check for valid references before messing with DOM elements/variables
 

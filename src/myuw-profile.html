@@ -1,11 +1,8 @@
 <style>
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
-:host([hidden]) {
-    display: none;
-}
+  @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
-#myuw-profile-login {
+  #myuw-profile-login {
     font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
     text-transform: uppercase;
     text-decoration: none;
@@ -17,13 +14,9 @@
     position: relative;
     display: inline-block;
     transition: background .25s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
+  }
 
-#myuw-profile-login.hidden {
-    display: none;
-}
-
-#myuw-profile-circle {
+  #myuw-profile-circle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,15 +32,15 @@
     background: transparent;
     border-color: transparent;
     transition: background .25s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
+  }
 
-#myuw-profile-circle:hover,
-#myuw-profile-login:hover {
+  #myuw-profile-circle:hover,
+  #myuw-profile-login:hover {
     cursor: pointer;
     background: rgba(0,0,0,0.12);
-}
+  }
 
-#myuw-profile-circle-initial {
+  #myuw-profile-circle-initial {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,19 +63,15 @@
     width: 34px;
     min-width: 34px;
     font-size: 18px;
-}
+  }
 
-#myuw-profile-wrapper {
+  #myuw-profile-wrapper {
     position: relative;
     display: inline-block;
     margin: 0 6px;
-}
+  }
 
-#myuw-profile-wrapper.hidden {
-    display: none;
-}
-
-#myuw-profile-nav {
+  #myuw-profile-nav {
     position: absolute;
     top: 45px;
     right: 0;
@@ -93,142 +82,150 @@
     padding: 0;
     font-size: 14px;
     z-index: 101;
+    -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+    -moz-box-shadow:    0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+    box-shadow:         0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
 
+  #myuw-profile-nav[hidden] {
+    display: unset !important;
     transform-origin: top right;
     transform: scale(0);
     opacity: 0;
     visibility: hidden;
     transition: visibility 0s, opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1), transform .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
 
-    -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
-    -moz-box-shadow:    0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
-    box-shadow:         0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
-}
-
-#myuw-profile-nav.visible {
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
-}
-
-#myuw-profile-nav p {
+  #myuw-profile-nav p {
     padding: 0;
     margin: 0;
-}
+  }
 
-::slotted(a),
-::slotted(p) {
-  transition: all .3s ease;
-  position: relative;
-  font-size: 15px;
-  font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
-  padding: 3px 16px;
-  color: var(--myuw-menu-color, rgba(0,0,0,0.87));
-  text-decoration: none;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #e5e5e5;
-  user-select: none;
-  outline: none;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  min-height: 48px;
-  height: 48px;
-  -webkit-align-content: center;
-  align-content: center;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
-}
+  ::slotted(a),
+  ::slotted(p) {
+    transition: all .3s ease;
+    position: relative;
+    font-size: 15px;
+    font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
+    padding: 3px 16px;
+    color: var(--myuw-menu-color, rgba(0,0,0,0.87));
+    text-decoration: none;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    user-select: none;
+    outline: none;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    min-height: 48px;
+    height: 48px;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+  }
 
-/* 
-  Styles need to be duplicated separate from ::slotted in order for 
-  Firefox to do it's job
-*/
-#myuw-profile-nav a,
-#myuw-profile-nav p {
-  transition: all .3s ease;
-  position: relative;
-  font-size: 15px;
-  font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
-  padding: 3px 16px;
-  color: var(--myuw-menu-color, rgba(0,0,0,0.87));
-  text-decoration: none;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #e5e5e5;
-  user-select: none;
-  outline: none;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  min-height: 48px;
-  height: 48px;
-  -webkit-align-content: center;
-  align-content: center;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
-}
+  /*
+     Styles need to be duplicated separate from ::slotted in order for
+     Firefox to do it's job
+   */
+  #myuw-profile-nav a,
+  #myuw-profile-nav p {
+    transition: all .3s ease;
+    position: relative;
+    font-size: 15px;
+    font-family: var( --myuw-profile-font, var(--myuw-font, 'Montserrat', 'Roboto', Arial, sans-serif) );
+    padding: 3px 16px;
+    color: var(--myuw-menu-color, rgba(0,0,0,0.87));
+    text-decoration: none;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    user-select: none;
+    outline: none;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    min-height: 48px;
+    height: 48px;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+  }
 
-#myuw-profile-nav #myuw-profile-nav-user {
+  #myuw-profile-nav #myuw-profile-nav-user {
     font-weight: 600;
     text-transform: capitalize;
     background-color: rgb(255,255,255);
     border-bottom: none;
-}
+  }
 
-#myuw-profile-nav #myuw-profile-nav-user.hidden {
-  display: none;
-}
-
-#myuw-profile-nav #myuw-profile-nav-user:hover {
+  #myuw-profile-nav #myuw-profile-nav-user:hover {
     background-color: rgb(255,255,255);
-}
+  }
 
-::slotted(a:hover),
-::slotted(a:focus),
-::slotted(p:hover),
-::slotted(p:focus)  {
+  ::slotted(a:hover),
+  ::slotted(a:focus),
+  ::slotted(p:hover),
+  ::slotted(p:focus)  {
     background-color: #ececec;
-}
+  }
 
-#myuw-profile-nav a:hover,
-#myuw-profile-nav a:focus,
-#myuw-profile-nav p:hover,
-#myuw-profile-nav p:focus {
+  #myuw-profile-nav a:hover,
+  #myuw-profile-nav a:focus,
+  #myuw-profile-nav p:hover,
+  #myuw-profile-nav p:focus {
     background-color: #ececec;
-}
+  }
+
+  /* Don't let `display` styles override hidden attribute */
+  [hidden] {
+    display: none !important;
+  }
+
 </style>
 
-<a href="#" id="myuw-profile-login" class="hidden">Login</a>
+<a href="#" id="myuw-profile-login" hidden>Login</a>
 
-<div id="myuw-profile-wrapper" class="hidden">
-    <button id="myuw-profile-circle"
-        aria-label="profile menu" 
-        aria-haspopup="true"
-        aria-controls="myuw-profile-nav"
-        aria-expanded="false">
-        <p id="myuw-profile-circle-initial"><i class="material-icons">person</i></p>
-    </button>
+<div id="myuw-profile-wrapper" hidden>
 
-    <ul id="myuw-profile-nav"
-        role="menu"
-        tabindex="-1"
-        aria-labelledby="myuw-profile-circle">
-        <p id="myuw-profile-nav-user"></p>
-        <li role="menuitem">
-            <slot name="nav-item"></slot>
-        </li>
-        <li role="menuitem">
-            <a id="myuw-profile-logout" href="#">Logout</a>
-        </li>
-    </ul>
+  <button
+    id="myuw-profile-circle"
+    aria-label="profile menu"
+    aria-haspopup="true"
+    aria-controls="myuw-profile-nav"
+    aria-expanded="false"
+  >
+    <p id="myuw-profile-circle-initial"><i class="material-icons">person</i></p>
+  </button>
+
+  <ul
+    id="myuw-profile-nav"
+    role="menu"
+    tabindex="-1"
+    aria-labelledby="myuw-profile-circle"
+    hidden
+  >
+    <p id="myuw-profile-nav-user"></p>
+    <li role="menuitem">
+      <slot name="nav-item"></slot>
+    </li>
+    <li>
+      <a id="myuw-profile-logout" href="#" role="menuitem">Logout</a>
+    </li>
+  </ul>
+
 </div>
